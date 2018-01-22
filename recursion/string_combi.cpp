@@ -27,18 +27,23 @@ int main (int argc, char* argv[])
 }
 
 void printAll(string s, int k) {
-	printHelper(s, " ", k);
+	printHelper(s, "", k);
 }
 
 void printHelper(string s, string t, int k) {
-	//Base Case:
+	//Base Case: 
+	//E.g. when t is already AB and k == 0
 	if(k == 0) {
 		cout << t << endl;
 	}
-	//Recursive Case: 
+	//Recursive Case:
+	//Passes in s == AB, k == "", k == 2
 	else {
-		for(int i = 0; i < s.length(); i++) {
-			printHelper(s, (t + s[i]), k--);
+		for(int i = 0; i < int(s.length()); i++) {
+			//For every character in s, it is appended to t and
+			//printHelper will choose one character
+			//from s and it will be appended to t
+			printHelper(s, (t + s[i]), (k - 1));
 		}
 	}
 }

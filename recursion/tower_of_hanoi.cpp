@@ -28,11 +28,21 @@ void move(int start, int end) {
 }
 
 void hanoi(int start, int end, int num_discs) {
+    //Base Case 1: 
+    //If there are no discs
     if(num_discs == 0) {
         return;
-    } else if(num_discs == 1) {
+    } 
+    //Base Case 2: 
+    //If there is only one more disc left to move, move it to destination
+    else if(num_discs == 1) {
         move(start, end);
-    } else {
+    } 
+    //Recursive Case:
+    //Call hanoi() to move n-1 discs above the largest disc to the auxillary
+    //Move the largest disc from start to end
+    //Call hanoi() to move n-1 discs from auxillary to destination
+    else {
         int auxillary = 6 - start - end;
         hanoi(start, auxillary, num_discs - 1);
         move(start, end);
