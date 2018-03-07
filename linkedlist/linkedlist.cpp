@@ -110,3 +110,19 @@ void recInsertAtEnd(Node* &head, int val) {
         recInsertAtEnd(head->next, val);
     }
 }
+
+Node* recInsertToSorted(Node* headPtr, Node* newNodePtr) {
+    if(headPtr == NULL) {
+        headPtr = newNodePtr;
+        return headPtr;
+    } else {
+        if(newNodePtr->value <= headPtr->value) {
+            newNodePtr->next = headPtr;
+            headPtr = newNodePtr;
+            return headPtr;
+        } else {
+            headPtr->next = recInsertToSorted(headPtr->next, newNodePtr);
+            return headPtr;
+        }
+    }
+}
